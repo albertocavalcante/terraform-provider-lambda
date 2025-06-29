@@ -1,0 +1,11 @@
+# Tool versions for reproducible builds
+# This file ensures all developers use the same tool versions
+
+# Go version (minimum required for Go 1.24 tool directives)
+golang 1.24.0
+
+# Terraform version  
+terraform 1.6.6
+
+# HashiCorp Plugin Codegen Tools
+# These are managed via Go 1.24 tool directives in tools.mod

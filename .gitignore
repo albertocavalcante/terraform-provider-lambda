@@ -35,3 +35,20 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Generated files - downloaded/generated on demand
+openapi.json
+provider_code_spec.json
+
+# Generated Go framework code - COMMITTED FOR VISIBILITY
+# This directory contains auto-generated provider framework code
+# DO NOT EDIT MANUALLY - regenerate with ./scripts/generate-provider.sh
+# Committed to allow code review and reproducible builds
+# codegen/
+
+# Built binaries
+terraform-provider-lambda
+terraform-provider-*
+
+# Lock files are environment-specific
+.terraform.lock.hcl
