@@ -1,0 +1,91 @@
+provider:
+  name: lambda
+  # Note: Provider schema will be added manually after generation
+
+resources:
+  instance:
+    create:
+      path: /api/v1/instance-operations/launch
+      method: POST
+    read:
+      path: /api/v1/instances/{id}
+      method: GET
+    delete:
+      path: /api/v1/instance-operations/terminate
+      method: POST
+    schema:
+      attributes:
+        aliases:
+          # Map path parameter to attribute
+          id: instance_id
+        overrides:
+          name:
+            description: "User-provided name for the instance (max 64 chars)"
+          region_name:
+            description: "Lambda Cloud region code where instance will be launched"
+          instance_type_name:
+            description: "Name of the instance type to launch"
+          ssh_key_names:
+            description: "List of SSH key names to add to the instance"
+          file_system_names:
+            description: "List of filesystem names to mount to the instance"
+      ignores:
+        # Complex multi-type fields that cause generation issues
+        - image
+        - user_data
+        # Complex nested objects that cause issues
+        - region
+        - instance_type
+        - actions
+        # Complex nested arrays that might cause issues  
+        - file_system_mounts
+        - tags
+        # Sensitive/computed values
+        - jupyter_token
+        - jupyter_url
+        - ip
+        - private_ip
+        - status
+        # Fields that are part of different operations
+        - quantity
+        - hostname
+
+  ssh_key:
+    create:
+      path: /api/v1/ssh-keys
+      method: POST
+    read:
+      path: /api/v1/ssh-keys
+      method: GET
+    delete:
+      path: /api/v1/ssh-keys/{id}
+      method: DELETE
+    schema:
+      attributes:
+        overrides:
+          name:
+            description: "Name of the SSH key (must be unique)"
+          public_key:
+            description: "The public key to add. If not provided, Lambda will generate a new key pair"
+        ignores:
+          # Sensitive computed value only returned on creation
+          - private_key
+
+data_sources:
+  instance_types:
+    read:
+      path: /api/v1/instance-types
+      method: GET
+    schema:
+      attributes:
+        overrides:
+          name:
+            description: "The name of the instance type"
+          description: 
+            description: "A description of the instance type"
+          gpu_description:
+            description: "Description of the GPUs in this instance type"
+          price_cents_per_hour:
+            description: "Price in US cents per hour"
+          specs:
+            description: "Hardware specifications for this instance type" 
