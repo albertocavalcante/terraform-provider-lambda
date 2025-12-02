@@ -2,7 +2,7 @@
 # This file ensures all developers use the same tool versions
 
 # Go version (minimum required for Go 1.24 tool directives)
-golang 1.24.4
+golang 1.25.5
 
 # Terraform version  
 terraform 1.12.2
