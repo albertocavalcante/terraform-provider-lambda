@@ -5,7 +5,7 @@
 golang 1.24.4
 
 # Terraform version  
-terraform 1.12.2
+terraform 1.14.3
 
 # HashiCorp Plugin Codegen Tools
 # These are managed via Go 1.24 tool directives in tools.mod
