@@ -2,7 +2,7 @@ module github.com/albertocavalcante/terraform-provider-lambda
 
 go 1.24.0
 
-toolchain go1.25.5
+toolchain go1.27.1
 
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.17.0
